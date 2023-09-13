@@ -1,0 +1,17 @@
+import pandas as pd
+import glob
+
+def get_all_excel_files_as_df():
+    """returns excel files values as DataFrame"""
+
+    folder_path = r'C:\\Data\\Sales\\'
+    files = glob.glob(folder_path + '*.xlsx')
+    df = []
+
+    for f in files:
+        excel = pd.read_excel(f, sheet_name='Export', skiprows=1)
+        df.append(excel)
+
+    df = pd.concat(df)
+
+    return df
